@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-1
+  labels:
+    app: app1
+spec:
+  template:
+
+    metadata:
+      name: nginx-pod
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: app1
+        image: supergiantkir/animals:bear
+
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1
