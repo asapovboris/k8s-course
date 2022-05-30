@@ -1,0 +1,39 @@
+# https://kubernetes.github.io/ingress-nginx/user-guide/basic-usage/
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-with-auth
+  annotations:
+    # type of authentication
+    nginx.ingress.kubernetes.io/auth-type: basic
+    # name of the secret that contains the user/password definitions
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    # message to display with an appropriate context why the authentication is required
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - basic'
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # We strip the prefix before it passes to our backend or our app wont load as it will get route /bears instead /
+
+
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: bear.34.250.176.191.nip.ip
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+             name: bear-svc
+             port:
+                number: 80
+  - host: moose.34.250.176.191.nip.ip
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+             name: bear-svc
+             port:
+                number: 80
