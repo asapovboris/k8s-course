@@ -11,6 +11,7 @@ spec:
       name: nginx-pod
       labels:
         app: app1
+        type: animals
     spec:
       containers:
       - name: app1
