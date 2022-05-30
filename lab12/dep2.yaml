@@ -11,6 +11,7 @@ spec:
       name: app2
       labels:
         app: app2
+        type: animals
     spec:
       containers:
       - name: app2
