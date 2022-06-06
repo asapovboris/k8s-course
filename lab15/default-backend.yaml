@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default
+spec:
+  selector:
+    matchLabels:
+      app: default  
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: default
+    spec:
+      containers:
+      - name: default
+        image: httpd:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service      
+apiVersion: v1     
+metadata:
+  name: default-svc 
+spec:
+  selector:
+    app: default   
+  ports:          
+  - name: http    
+    protocol: TCP
+    port: 80
+    targetPort: 80
