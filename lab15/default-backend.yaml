@@ -38,6 +38,7 @@ kind: Ingress
 metadata:
   name: default-ingress
 spec:
+  ingressClassName: nginx
   defaultBackend:
     service:
       name: default-svc
