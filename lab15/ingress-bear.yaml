@@ -6,6 +6,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-weight: "10"
+    # default backend
+    nginx.ingress.kubernetes.io/default-backend: default-svc
 spec:
   ingressClassName: nginx
   rules:
